@@ -146,34 +146,6 @@
         }
       }
 
-      .typewriter-dynamic {
-        font-size: 1.7rem;
-        font-weight: 600;
-        color: var(--accent-dark);
-        position: relative;
-        min-height: 2.1rem;
-      }
-
-      .typewriter-cursor {
-        display: inline-block;
-        width: 10px;
-        margin-left: 2px;
-        background: transparent;
-        border-left: 2px solid var(--accent-dark);
-        animation: blink-cursor 0.8s steps(1) infinite;
-      }
-
-      @keyframes blink-cursor {
-        0%,
-        50% {
-          opacity: 1;
-        }
-        51%,
-        100% {
-          opacity: 0;
-        }
-      }
-
       .subtitle {
         margin: 0.3rem 0 0;
         font-size: 0.95rem;
@@ -426,10 +398,9 @@
           </div>
 
           <div class="typewriter-wrap">
-            <div class="typewriter-static">Enroll Now</div>
-            <div class="typewriter-dynamic">
-              <span id="typewriterText"></span><span class="typewriter-cursor"></span>
-            </div>
+            <h1 class="typewriter-static mb-1">
+              Enroll Now – สมัครเรียน
+            </h1>
           </div>
 
           <p class="subtitle">
@@ -640,47 +611,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      // TYPEWRITER EFFECT
-      document.addEventListener("DOMContentLoaded", function () {
-        const phrases = [
-          "สมัครเรียนง่ายใน 3 ขั้นตอน",
-          "ลงทะเบียนได้ในไม่กี่นาที",
-          "พร้อมเริ่มเรียนได้ทันที",
-        ];
-        const el = document.getElementById("typewriterText");
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let typing = true;
-
-        function typeLoop() {
-          if (!el) return;
-          const current = phrases[phraseIndex];
-
-          if (typing) {
-            if (charIndex <= current.length) {
-              el.textContent = current.slice(0, charIndex);
-              charIndex++;
-              setTimeout(typeLoop, 70);
-            } else {
-              typing = false;
-              setTimeout(typeLoop, 1300);
-            }
-          } else {
-            if (charIndex > 0) {
-              charIndex--;
-              el.textContent = current.slice(0, charIndex);
-              setTimeout(typeLoop, 35);
-            } else {
-              typing = true;
-              phraseIndex = (phraseIndex + 1) % phrases.length;
-              setTimeout(typeLoop, 200);
-            }
-          }
-        }
-
-        typeLoop();
-      });
-
       // FADE-IN ON SCROLL
       const observer = new IntersectionObserver(
         (entries) => {

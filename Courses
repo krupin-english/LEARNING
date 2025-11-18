@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Courses – คอร์สเรียนของเรา (ข้อความทดสอบ)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --accent-main: #f38f80;
+        --accent-soft: #ffe5df;
+        --accent-soft-2: #fde4de;
+        --accent-dark: #d66855;
+        --text-main: #2e2e2e;
+        --text-soft: #6b6b6b;
+        --card-radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Kanit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(circle at top left, #ffe5df 0, #fde4de 35%, #ffffff 100%);
+        color: var(--text-main);
+      }
+
+      .page-wrap {
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      @media (min-width: 768px) {
+        .page-wrap {
+          padding: 3rem 2.5rem 4rem;
+        }
+      }
+
+      .courses-shell {
+        max-width: 1080px;
+        margin: 0 auto;
+        background: linear-gradient(145deg, #ffffff, rgba(255, 229, 223, 0.95));
+        border-radius: 32px;
+        box-shadow:
+          0 20px 60px rgba(243, 143, 128, 0.35),
+          0 4px 18px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .courses-shell::before {
+        content: "";
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #ffffff 0, #ffe5df 60%, transparent 75%);
+        top: -80px;
+        right: -60px;
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .courses-shell::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #ffe5df 0, #f38f80 60%, transparent 80%);
+        bottom: -90px;
+        left: -50px;
+        opacity: 0.25;
+        pointer-events: none;
+      }
+
+      .courses-header {
+        position: relative;
+        padding: 2rem 1.75rem 1.25rem;
+      }
+
+      @media (min-width: 768px) {
+        .courses-header {
+          padding: 2.5rem 3rem 1.75rem;
+        }
+      }
+
+      .courses-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.18rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(243, 143, 128, 0.08);
+        color: var(--accent-dark);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .courses-label-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent-dark);
+      }
+
+      .typewriter-wrap {
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+
+      .typewriter-static {
+        font-size: 1.7rem;
+        font-weight: 600;
+      }
+
+      @media (min-width: 768px) {
+        .typewriter-static {
+          font-size: 2rem;
+        }
+      }
+
+      .typewriter-dynamic {
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: var(--accent-dark);
+        position: relative;
+        min-height: 2.1rem;
+      }
+
+      .typewriter-cursor {
+        display: inline-block;
+        width: 10px;
+        margin-left: 2px;
+        background: transparent;
+        border-left: 2px solid var(--accent-dark);
+        animation: blink-cursor 0.8s steps(1) infinite;
+      }
+
+      @keyframes blink-cursor {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .courses-subtitle {
+        margin: 0.3rem 0 0;
+        font-size: 0.95rem;
+        color: var(--text-soft);
+      }
+
+      .test-text-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.4rem;
+        padding: 0.15rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 0.75rem;
+        color: var(--text-soft);
+      }
+
+      .test-text-badge i {
+        color: var(--accent-main);
+      }
+
+      .courses-body {
+        position: relative;
+        padding: 0 1.75rem 1.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .courses-body {
+          padding: 0 3rem 2.25rem;
+        }
+      }
+
+      .fade-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .fade-section.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .course-card {
+        border-radius: var(--card-radius);
+        background: rgba(255, 255, 255, 0.97);
+        border: 1px solid rgba(243, 143, 128, 0.18);
+        padding: 1.1rem 1.1rem 1rem;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 26px rgba(243, 143, 128, 0.18);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .course-card::before {
+        content: "";
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #ffe5df 0, transparent 70%);
+        top: -45px;
+        right: -40px;
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 16px 36px rgba(243, 143, 128, 0.25),
+          0 4px 12px rgba(0, 0, 0, 0.05);
+        border-color: rgba(243, 143, 128, 0.4);
+      }
+
+      .course-card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 15px;
+        background: linear-gradient(135deg, var(--accent-main), var(--accent-soft-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 8px 16px rgba(243, 143, 128, 0.4);
+      }
+
+      .course-card-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+
+      .course-card-subtitle {
+        font-size: 0.88rem;
+        color: var(--text-soft);
+        margin-bottom: 0.4rem;
+      }
+
+      .course-card ul {
+        padding-left: 1.2rem;
+        margin: 0;
+        font-size: 0.83rem;
+        color: var(--text-soft);
+      }
+
+      .course-card ul li + li {
+        margin-top: 0.15rem;
+      }
+
+      .course-card ul li::marker {
+        color: var(--accent-main);
+      }
+
+      .section-title-small {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .section-title-small i {
+        color: var(--accent-main);
+      }
+
+      .benefit-card {
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.96);
+        padding: 0.9rem 0.95rem;
+        border: 1px dashed rgba(243, 143, 128, 0.4);
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        font-size: 0.85rem;
+        color: var(--text-soft);
+      }
+
+      .benefit-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(243, 143, 128, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-dark);
+        flex-shrink: 0;
+      }
+
+      .benefit-text-label {
+        font-weight: 600;
+        color: var(--text-main);
+        font-size: 0.9rem;
+      }
+
+      .placement-callout {
+        margin-top: 1.4rem;
+        padding: 1rem 1.05rem;
+        border-radius: 18px;
+        background: linear-gradient(120deg, rgba(243, 143, 128, 0.15), rgba(255, 255, 255, 0.98));
+        border: 1px solid rgba(243, 143, 128, 0.4);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .placement-highlight {
+        font-weight: 600;
+        color: var(--accent-dark);
+      }
+
+      .btn-pastel-primary {
+        border-radius: 999px;
+        padding: 0.4rem 1.35rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: none;
+        background: linear-gradient(135deg, var(--accent-main), var(--accent-dark));
+        color: #ffffff;
+        box-shadow: 0 10px 18px rgba(243, 143, 128, 0.45);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+      }
+
+      .btn-pastel-primary:hover {
+        background: linear-gradient(135deg, var(--accent-dark), var(--accent-main));
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 12px 22px rgba(243, 143, 128, 0.55);
+      }
+
+      .btn-pastel-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 12px rgba(243, 143, 128, 0.4);
+      }
+
+      .meta-note {
+        text-align: center;
+        font-size: 0.78rem;
+        padding: 0.9rem 1.5rem 1.4rem;
+        color: var(--text-soft);
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrap">
+      <div class="courses-shell">
+        <!-- HEADER -->
+        <header class="courses-header">
+          <div class="courses-label">
+            <span class="courses-label-dot"></span>
+            COURSES – คอร์สเรียนของเรา
+          </div>
+
+          <div class="typewriter-wrap">
+            <div class="typewriter-static">English Courses</div>
+            <div class="typewriter-dynamic">
+              <span id="typewriterText"></span><span class="typewriter-cursor"></span>
+            </div>
+          </div>
+
+          <p class="courses-subtitle">
+            คอร์สเรียนภาษาอังกฤษของเราออกแบบมาเพื่อให้ “ใช้ได้จริง” ในชีวิตประจำวันและการทำงาน
+            ไม่ใช่แค่จำแกรมมาร์ แต่เน้นให้คุณ
+            <strong>กล้าพูด ฟังรู้เรื่อง และสื่อสารได้อย่างมั่นใจ</strong>
+            แม้จะเริ่มจากศูนย์ก็ตาม
+          </p>
+
+          <div class="test-text-badge">
+            <i class="bi bi-info-circle"></i>
+            <span>ข้อความนี้เป็นข้อความทดสอบ สามารถแก้ไขเนื้อหาได้ภายหลัง</span>
+          </div>
+        </header>
+
+        <!-- BODY -->
+        <main class="courses-body">
+          <!-- COURSE CARDS -->
+          <section class="fade-section" id="courseCardsSection">
+            <div class="section-title-small mb-2">
+              <i class="bi bi-layers"></i>
+              <span>ระดับคอร์สเรียนที่มีให้เลือก</span>
+            </div>
+
+            <div class="row g-3 g-md-4">
+              <!-- Beginner -->
+              <div class="col-md-6">
+                <article class="course-card h-100">
+                  <div class="course-card-icon">
+                    <i class="bi bi-seedling"></i>
+                  </div>
+                  <h2 class="course-card-title">🔹 Beginner Course – ปูพื้นฐานจากศูนย์</h2>
+                  <p class="course-card-subtitle">
+                    สำหรับคนที่พื้นฐานน้อย เคยเรียนแล้วลืม หรืออยากเริ่มใหม่อย่างเข้าใจ
+                  </p>
+                  <ul>
+                    <li>สำหรับคนที่พื้นฐานน้อย หรือเคยเรียนแล้วลืม</li>
+                    <li>สอนโครงสร้างประโยคแบบเข้าใจง่าย ใช้ได้จริง</li>
+                    <li>คำศัพท์พื้นฐานที่ใช้บ่อยในชีวิตประจำวัน</li>
+                    <li>ฝึกอ่าน–เขียน–ฟัง–พูด แบบช้าแต่ชัวร์</li>
+                  </ul>
+                </article>
+              </div>
+
+              <!-- Conversation -->
+              <div class="col-md-6">
+                <article class="course-card h-100">
+                  <div class="course-card-icon">
+                    <i class="bi bi-chat-dots"></i>
+                  </div>
+                  <h2 class="course-card-title">🔹 Conversation Course – พูดโต้ตอบในชีวิตจริง</h2>
+                  <p class="course-card-subtitle">
+                    เหมาะสำหรับคนที่อยากพูดคุยกับต่างชาติให้ลื่นไหล ฟังรู้เรื่อง ไม่เกร็ง
+                  </p>
+                  <ul>
+                    <li>ฝึกพูดโต้ตอบสถานการณ์ต่าง ๆ เช่น งาน ร้านอาหาร ท่องเที่ยว</li>
+                    <li>เน้นออกเสียง (Pronunciation) ให้ฟังชัด เป็นธรรมชาติ</li>
+                    <li>มีโจทย์ให้ฝึกพูดด้วยตัวเอง และส่งเสียงให้ครูตรวจได้</li>
+                  </ul>
+                </article>
+              </div>
+
+              <!-- Work & Career -->
+              <div class="col-md-6">
+                <article class="course-card h-100">
+                  <div class="course-card-icon">
+                    <i class="bi bi-briefcase"></i>
+                  </div>
+                  <h2 class="course-card-title">
+                    🔹 Work &amp; Career Course – ภาษาอังกฤษที่ใช้ในที่ทำงาน
+                  </h2>
+                  <p class="course-card-subtitle">
+                    เสริมความมั่นใจในการใช้ภาษาอังกฤษในออฟฟิศ ประชุม หรือนำเสนอ
+                  </p>
+                  <ul>
+                    <li>ประโยคพื้นฐานที่ใช้ในออฟฟิศ การประชุม และอีเมล</li>
+                    <li>ฝึกนำเสนอ (Presentation) และ Small Talk กับต่างชาติ</li>
+                    <li>เหมาะกับคนทำงานที่อยากอัปเกรดเงินเดือนและโอกาสในสายงาน</li>
+                  </ul>
+                </article>
+              </div>
+
+              <!-- Exam & Goal -->
+              <div class="col-md-6">
+                <article class="course-card h-100">
+                  <div class="course-card-icon">
+                    <i class="bi bi-flag"></i>
+                  </div>
+                  <h2 class="course-card-title">
+                    🔹 Exam &amp; Goal Focus – เตรียมสอบ / เป้าหมายเฉพาะ
+                  </h2>
+                  <p class="course-card-subtitle">
+                    โฟกัสเฉพาะเป้าหมายของคุณ เพื่อลดเวลาการอ่านเองแบบงง ๆ
+                  </p>
+                  <ul>
+                    <li>ปรับเนื้อหาตามเป้าหมาย เช่น สอบสัมภาษณ์, สอบเข้า, ใช้ยื่นงาน</li>
+                    <li>มีแบบฝึกหัดและแนวข้อสอบให้ฝึกทำ</li>
+                    <li>โฟกัสเฉพาะจุดที่ต้องใช้จริง เพื่อลดเวลาอ่านเองแบบงง ๆ</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <!-- BENEFITS -->
+          <section class="fade-section mt-4" id="benefitsSection">
+            <div class="section-title-small mb-2">
+              <i class="bi bi-gift"></i>
+              <span>สิ่งที่คุณจะได้รับจากการเรียนกับเรา</span>
+            </div>
+
+            <div class="row g-3 g-md-3">
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-journal-check"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">เข้าใจง่าย ไม่ยัดเยียด</div>
+                    <div>เนื้อหาสรุปเข้าใจง่าย ไม่เน้นท่องจำอย่างเดียว</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-cloud-arrow-down"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">มีเอกสารให้ดาวน์โหลด</div>
+                    <div>แบบฝึกหัดและเอกสารประกอบ ทบทวนได้ทุกเมื่อ</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-person-heart"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">ฟีดแบ็กจากผู้สอน</div>
+                    <div>รู้จุดอ่อน–จุดแข็งของตัวเอง เพื่อนำไปปรับปรุงได้ตรงจุด</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">เรียนซ้ำได้</div>
+                    <div>เรียนซ้ำย้อนหลังได้ (แล้วแต่แพ็กเกจที่เลือก)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PLACEMENT TEST CALLOUT -->
+          <section class="fade-section" id="placementSection">
+            <div class="placement-callout mt-4">
+              <div>
+                หากคุณยังไม่แน่ใจว่าควรเริ่มที่คอร์สไหน
+                แนะนำให้เริ่มจาก
+                <span class="placement-highlight">แบบทดสอบระดับภาษา (Placement Test)</span>
+                แล้วให้เราช่วยแนะนำคอร์สที่เหมาะกับคุณที่สุดได้เลย 💬
+              </div>
+              <button type="button" id="testBtn" class="btn-pastel-primary">
+                ลองทำ Placement Test
+                <i class="bi bi-arrow-right-short"></i>
+              </button>
+            </div>
+          </section>
+        </main>
+
+        <div class="meta-note">
+          หน้านี้เป็นตัวอย่างการจัดวางข้อความ “Courses – คอร์สเรียนของเรา”
+          พร้อมเอฟเฟกต์พาสเทลสำหรับใช้ทดสอบ หรือแคปหน้าจอไปจัดวางต่อใน Canva ได้
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // TYPEWRITER EFFECT
+      document.addEventListener("DOMContentLoaded", function () {
+        const phrases = [
+          "คอร์สเรียนทุกระดับ",
+          "ปรับตามเป้าหมายของคุณ",
+          "เน้นใช้จริง พูดได้มั่นใจ",
+        ];
+        const el = document.getElementById("typewriterText");
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let typing = true;
+
+        function typeLoop() {
+          if (!el) return;
+          const current = phrases[phraseIndex];
+
+          if (typing) {
+            if (charIndex <= current.length) {
+              el.textContent = current.slice(0, charIndex);
+              charIndex++;
+              setTimeout(typeLoop, 70);
+            } else {
+              typing = false;
+              setTimeout(typeLoop, 1300);
+            }
+          } else {
+            if (charIndex > 0) {
+              charIndex--;
+              el.textContent = current.slice(0, charIndex);
+              setTimeout(typeLoop, 35);
+            } else {
+              typing = true;
+              phraseIndex = (phraseIndex + 1) % phrases.length;
+              setTimeout(typeLoop, 200);
+            }
+          }
+        }
+
+        typeLoop();
+      });
+
+      // FADE-IN ON SCROLL
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll(".fade-section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // TEST BUTTON
+      document.getElementById("testBtn")?.addEventListener("click", () => {
+        alert(
+          "นี่คือปุ่มทดสอบสำหรับลิงก์ไปยังหน้าแบบทดสอบ Placement Test\n\nคุณสามารถเปลี่ยนให้เปิดลิงก์จริงของคุณได้ภายหลัง."
+        );
+      });
+    </script>
+  </body>
+</html>

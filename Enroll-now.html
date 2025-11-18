@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Enroll – สมัครเรียน (ข้อความทดสอบ)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --accent-main: #f38f80;
+        --accent-soft: #ffe5df;
+        --accent-soft-2: #fde4de;
+        --accent-dark: #d66855;
+        --text-main: #2e2e2e;
+        --text-soft: #6b6b6b;
+        --card-radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Kanit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(circle at top left, #ffe5df 0, #fde4de 35%, #ffffff 100%);
+        color: var(--text-main);
+      }
+
+      .page-wrap {
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      @media (min-width: 768px) {
+        .page-wrap {
+          padding: 3rem 2.5rem 4rem;
+        }
+      }
+
+      .shell {
+        max-width: 1080px;
+        margin: 0 auto;
+        background: linear-gradient(145deg, #ffffff, rgba(255, 229, 223, 0.95));
+        border-radius: 32px;
+        box-shadow:
+          0 20px 60px rgba(243, 143, 128, 0.35),
+          0 4px 18px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .shell::before {
+        content: "";
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #ffffff 0, #ffe5df 60%, transparent 75%);
+        top: -80px;
+        right: -60px;
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .shell::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #ffe5df 0, #f38f80 60%, transparent 80%);
+        bottom: -90px;
+        left: -50px;
+        opacity: 0.25;
+        pointer-events: none;
+      }
+
+      .header {
+        position: relative;
+        padding: 2rem 1.75rem 1.25rem;
+      }
+
+      @media (min-width: 768px) {
+        .header {
+          padding: 2.5rem 3rem 1.75rem;
+        }
+      }
+
+      .label-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.18rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(243, 143, 128, 0.08);
+        color: var(--accent-dark);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .label-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent-dark);
+      }
+
+      .typewriter-wrap {
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+
+      .typewriter-static {
+        font-size: 1.7rem;
+        font-weight: 600;
+      }
+
+      @media (min-width: 768px) {
+        .typewriter-static {
+          font-size: 2rem;
+        }
+      }
+
+      .typewriter-dynamic {
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: var(--accent-dark);
+        position: relative;
+        min-height: 2.1rem;
+      }
+
+      .typewriter-cursor {
+        display: inline-block;
+        width: 10px;
+        margin-left: 2px;
+        background: transparent;
+        border-left: 2px solid var(--accent-dark);
+        animation: blink-cursor 0.8s steps(1) infinite;
+      }
+
+      @keyframes blink-cursor {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .subtitle {
+        margin: 0.3rem 0 0;
+        font-size: 0.95rem;
+        color: var(--text-soft);
+      }
+
+      .test-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.4rem;
+        padding: 0.15rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 0.75rem;
+        color: var(--text-soft);
+      }
+
+      .test-badge i {
+        color: var(--accent-main);
+      }
+
+      .body {
+        position: relative;
+        padding: 0 1.75rem 1.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .body {
+          padding: 0 3rem 2.25rem;
+        }
+      }
+
+      .fade-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .fade-section.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title-small {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .section-title-small i {
+        color: var(--accent-main);
+      }
+
+      .step-card {
+        border-radius: var(--card-radius);
+        background: rgba(255, 255, 255, 0.97);
+        border: 1px solid rgba(243, 143, 128, 0.18);
+        padding: 1.1rem 1.1rem 1rem;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 26px rgba(243, 143, 128, 0.18);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .step-card::before {
+        content: "";
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #ffe5df 0, transparent 70%);
+        top: -45px;
+        right: -40px;
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .step-card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 16px 36px rgba(243, 143, 128, 0.25),
+          0 4px 12px rgba(0, 0, 0, 0.05);
+        border-color: rgba(243, 143, 128, 0.4);
+      }
+
+      .step-number-badge {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent-main), var(--accent-soft-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        box-shadow: 0 8px 16px rgba(243, 143, 128, 0.4);
+      }
+
+      .step-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .step-subtitle {
+        font-size: 0.86rem;
+        color: var(--text-soft);
+        margin-bottom: 0.45rem;
+      }
+
+      .step-card ul {
+        padding-left: 1.2rem;
+        margin: 0;
+        font-size: 0.83rem;
+        color: var(--text-soft);
+      }
+
+      .step-card ul li + li {
+        margin-top: 0.15rem;
+      }
+
+      .step-card ul li::marker {
+        color: var(--accent-main);
+      }
+
+      .info-card {
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.96);
+        padding: 1rem 1.1rem;
+        border: 1px dashed rgba(243, 143, 128, 0.45);
+        font-size: 0.88rem;
+        color: var(--text-soft);
+      }
+
+      .info-card strong {
+        color: var(--text-main);
+      }
+
+      .info-list {
+        padding-left: 1.1rem;
+        margin-bottom: 0;
+      }
+
+      .info-list li::marker {
+        color: var(--accent-main);
+      }
+
+      .benefit-card {
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.96);
+        padding: 0.9rem 0.95rem;
+        border: 1px dashed rgba(243, 143, 128, 0.4);
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        font-size: 0.85rem;
+        color: var(--text-soft);
+      }
+
+      .benefit-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(243, 143, 128, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-dark);
+        flex-shrink: 0;
+      }
+
+      .benefit-text-label {
+        font-weight: 600;
+        color: var(--text-main);
+        font-size: 0.9rem;
+      }
+
+      .callout {
+        margin-top: 1.4rem;
+        padding: 1rem 1.05rem;
+        border-radius: 18px;
+        background: linear-gradient(120deg, rgba(243, 143, 128, 0.15), rgba(255, 255, 255, 0.98));
+        border: 1px solid rgba(243, 143, 128, 0.4);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .callout-highlight {
+        font-weight: 600;
+        color: var(--accent-dark);
+      }
+
+      .btn-pastel-primary {
+        border-radius: 999px;
+        padding: 0.4rem 1.35rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: none;
+        background: linear-gradient(135deg, var(--accent-main), var(--accent-dark));
+        color: #ffffff;
+        box-shadow: 0 10px 18px rgba(243, 143, 128, 0.45);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+      }
+
+      .btn-pastel-primary:hover {
+        background: linear-gradient(135deg, var(--accent-dark), var(--accent-main));
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 12px 22px rgba(243, 143, 128, 0.55);
+      }
+
+      .btn-pastel-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 12px rgba(243, 143, 128, 0.4);
+      }
+
+      .meta-note {
+        text-align: center;
+        font-size: 0.78rem;
+        padding: 0.9rem 1.5rem 1.4rem;
+        color: var(--text-soft);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrap">
+      <div class="shell">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="label-chip">
+            <span class="label-dot"></span>
+            ENROLL – สมัครเรียน
+          </div>
+
+          <div class="typewriter-wrap">
+            <div class="typewriter-static">Enroll Now</div>
+            <div class="typewriter-dynamic">
+              <span id="typewriterText"></span><span class="typewriter-cursor"></span>
+            </div>
+          </div>
+
+          <p class="subtitle">
+            ขั้นตอนสมัครเรียนถูกออกแบบมาให้
+            <strong>ง่าย รวดเร็ว และชัดเจน</strong>
+            คุณสามารถเริ่มต้นเรียนได้ภายในไม่กี่นาที
+            เพียงเตรียมข้อมูลพื้นฐานเล็กน้อยและยืนยันการชำระเงินผ่านช่องทางที่สะดวก.
+          </p>
+
+          <div class="test-badge">
+            <i class="bi bi-info-circle"></i>
+            <span>หน้านี้เป็นตัวอย่างข้อความทดสอบสำหรับเมนู “สมัครเรียน”</span>
+          </div>
+        </header>
+
+        <!-- BODY -->
+        <main class="body">
+          <!-- STEPS -->
+          <section class="fade-section" id="stepsSection">
+            <div class="section-title-small mb-2">
+              <i class="bi bi-list-ol"></i>
+              <span>สมัครเรียนง่าย ๆ ใน 3 ขั้นตอน</span>
+            </div>
+
+            <div class="row g-3 g-md-4">
+              <!-- STEP 1 -->
+              <div class="col-md-4">
+                <article class="step-card h-100">
+                  <div class="step-number-badge">1</div>
+                  <h2 class="step-title">เลือกคอร์สที่ต้องการ</h2>
+                  <p class="step-subtitle">
+                    เลือกคอร์สเรียนภาษาอังกฤษให้เหมาะกับระดับและเป้าหมายของคุณ.
+                  </p>
+                  <ul>
+                    <li>ดูรายละเอียดคอร์สจากหน้า “Courses”</li>
+                    <li>พิจารณาระดับที่เหมาะสมกับพื้นฐาน</li>
+                    <li>ตรวจสอบวัน–เวลาเรียน และรูปแบบการเรียน</li>
+                  </ul>
+                </article>
+              </div>
+
+              <!-- STEP 2 -->
+              <div class="col-md-4">
+                <article class="step-card h-100">
+                  <div class="step-number-badge">2</div>
+                  <h2 class="step-title">กรอกข้อมูลสำหรับสมัคร</h2>
+                  <p class="step-subtitle">
+                    กรอกข้อมูลพื้นฐานให้ครบถ้วน เพื่อให้เราดูแลคุณได้อย่างถูกต้อง.
+                  </p>
+                  <ul>
+                    <li>ชื่อ–นามสกุล และช่องทางติดต่อ</li>
+                    <li>ระดับภาษาอังกฤษปัจจุบัน (ถ้าทราบ)</li>
+                    <li>เป้าหมายในการเรียนภาษาอังกฤษของคุณ</li>
+                  </ul>
+                </article>
+              </div>
+
+              <!-- STEP 3 -->
+              <div class="col-md-4">
+                <article class="step-card h-100">
+                  <div class="step-number-badge">3</div>
+                  <h2 class="step-title">ยืนยันการชำระเงิน</h2>
+                  <p class="step-subtitle">
+                    ชำระค่าเรียนผ่านช่องทางที่สะดวก จากนั้นแจ้งหลักฐานให้ทีมงานตรวจสอบ.
+                  </p>
+                  <ul>
+                    <li>เลือกช่องทางชำระเงินที่ต้องการ</li>
+                    <li>อัปโหลดสลิปหรือแจ้งหลักฐานการชำระเงิน</li>
+                    <li>รอยืนยัน และรับสิทธิ์เข้าเรียนอย่างเป็นทางการ</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <!-- INFO / FORM MOCK -->
+          <section class="fade-section mt-4" id="infoSection">
+            <div class="section-title-small mb-2">
+              <i class="bi bi-card-checklist"></i>
+              <span>ข้อมูลที่ใช้ในการสมัครเรียน</span>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-lg-7">
+                <div class="info-card">
+                  <p class="mb-2">
+                    เพื่อให้การสมัครเรียนเป็นไปอย่างราบรื่นและรวดเร็ว
+                    แนะนำให้คุณเตรียมข้อมูลดังต่อไปนี้ให้พร้อมก่อนกดสมัคร:
+                  </p>
+                  <ul class="info-list">
+                    <li>ชื่อ–นามสกุล (ภาษาไทยหรือภาษาอังกฤษก็ได้)</li>
+                    <li>เบอร์โทรศัพท์ และอีเมลสำหรับติดต่อกลับ</li>
+                    <li>Line ID หรือช่องทางติดต่อหลักที่สะดวก</li>
+                    <li>ระดับภาษาอังกฤษปัจจุบัน (เช่น พื้นฐาน / ปานกลาง / ใช้งานในที่ทำงาน)</li>
+                    <li>เป้าหมายหลักในการเรียน (เช่น ใช้ในงาน, ท่องเที่ยว, สอบ, ย้ายงาน ฯลฯ)</li>
+                    <li>ช่วงเวลาเรียนที่สะดวก (เช้า / บ่าย / เย็น / วันหยุด)</li>
+                  </ul>
+                  <p class="mt-2 mb-0">
+                    <strong>หมายเหตุ:</strong>
+                    ข้อมูลทั้งหมดเป็นเพียงตัวอย่างสำหรับทดลองใช้งาน คุณสามารถปรับคำถามและรายละเอียดให้ตรงกับระบบจริงของคุณได้ภายหลัง.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="info-card">
+                  <p class="mb-2">
+                    ตัวอย่างฟอร์มสมัครเรียน (ข้อความทดสอบ) สามารถใช้เป็นแนวทางออกแบบหน้าฟอร์มจริงได้:
+                  </p>
+                  <ul class="info-list">
+                    <li>ช่องกรอกชื่อ–นามสกุล</li>
+                    <li>ช่องกรอกเบอร์โทร / อีเมล</li>
+                    <li>เมนูเลือกคอร์สที่สนใจ</li>
+                    <li>กล่องติ๊กเลือกช่องทางติดต่อกลับ</li>
+                    <li>กล่องข้อความสั้น “อยากให้เราช่วยด้านไหนเป็นพิเศษ?”</li>
+                  </ul>
+                  <p class="mt-2 mb-0">
+                    คุณสามารถนำโครงนี้ไปพัฒนาต่อเป็นหน้าแบบฟอร์มจริง หรือใช้ร่วมกับ Google Form / ระบบ CRM ได้ตามต้องการ.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- BENEFITS -->
+          <section class="fade-section mt-4" id="benefitsSection">
+            <div class="section-title-small mb-2">
+              <i class="bi bi-stars"></i>
+              <span>สมัครตอนนี้…คุณจะได้อะไรเพิ่ม?</span>
+            </div>
+
+            <div class="row g-3 g-md-3">
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-lightning-charge"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">เริ่มเรียนได้เร็ว</div>
+                    <div>หลังยืนยันการชำระเงิน สามารถเริ่มเรียนได้ตามรอบที่เลือกทันที.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">ดูแลแบบใกล้ชิด</div>
+                    <div>มีทีมงานและผู้สอนคอยตอบคำถามและช่วยแนะนำการเรียนอยู่เสมอ.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-shield-check"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">ข้อมูลปลอดภัย</div>
+                    <div>ข้อมูลการสมัครและประวัติการชำระเงินถูกเก็บอย่างเป็นระบบ.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-gift"></i>
+                  </div>
+                  <div>
+                    <div class="benefit-text-label">สิทธิพิเศษเพิ่มเติม</div>
+                    <div>อาจมีโปรเสริม / เวิร์กช็อป หรือไฟล์พิเศษสำหรับผู้สมัครรอบนี้.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CALLOUT -->
+          <section class="fade-section" id="calloutSection">
+            <div class="callout mt-4">
+              <div>
+                หากคุณยังไม่แน่ใจว่าจะเริ่มสมัครอย่างไร
+                สามารถ
+                <span class="callout-highlight">ทักหาแอดมิน</span>
+                เพื่อให้ช่วยแนะนำคอร์สที่เหมาะสม
+                หรือขอรายละเอียดขั้นตอนสมัครแบบละเอียดได้ทุกเวลา 💬
+              </div>
+              <button type="button" id="enrollBtn" class="btn-pastel-primary">
+                ทดลองคลิกปุ่มสมัครเรียน
+                <i class="bi bi-arrow-right-short"></i>
+              </button>
+            </div>
+          </section>
+        </main>
+
+        <div class="meta-note">
+          หน้านี้เป็นตัวอย่างการจัดวางข้อความ “สมัครเรียน” ด้วยธีมพาสเทลและเอฟเฟกต์
+          สามารถใช้ทดสอบ, แคปหน้าจอไปใช้ใน Canva หรือปรับเป็นหน้าเว็บจริงได้ตามต้องการ
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // TYPEWRITER EFFECT
+      document.addEventListener("DOMContentLoaded", function () {
+        const phrases = [
+          "สมัครเรียนง่ายใน 3 ขั้นตอน",
+          "ลงทะเบียนได้ในไม่กี่นาที",
+          "พร้อมเริ่มเรียนได้ทันที",
+        ];
+        const el = document.getElementById("typewriterText");
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let typing = true;
+
+        function typeLoop() {
+          if (!el) return;
+          const current = phrases[phraseIndex];
+
+          if (typing) {
+            if (charIndex <= current.length) {
+              el.textContent = current.slice(0, charIndex);
+              charIndex++;
+              setTimeout(typeLoop, 70);
+            } else {
+              typing = false;
+              setTimeout(typeLoop, 1300);
+            }
+          } else {
+            if (charIndex > 0) {
+              charIndex--;
+              el.textContent = current.slice(0, charIndex);
+              setTimeout(typeLoop, 35);
+            } else {
+              typing = true;
+              phraseIndex = (phraseIndex + 1) % phrases.length;
+              setTimeout(typeLoop, 200);
+            }
+          }
+        }
+
+        typeLoop();
+      });
+
+      // FADE-IN ON SCROLL
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll(".fade-section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // TEST BUTTON
+      document.getElementById("enrollBtn")?.addEventListener("click", () => {
+        alert(
+          "นี่คือปุ่มทดสอบสำหรับเมนู “สมัครเรียน”\n\nคุณสามารถเปลี่ยนให้เปิดลิงก์ไปยังฟอร์มสมัครจริง หรือแชทหาแอดมินใน LINE OA ได้ภายหลัง."
+        );
+      });
+    </script>
+  </body>
+</html>
